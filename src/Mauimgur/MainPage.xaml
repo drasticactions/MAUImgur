@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Mauimgur.Utilities"
+             x:Class="Mauimgur.MainPage">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="addImageItem">
+            
+        </DataTemplate>
+        <local:AlbumTemplateSelector x:Key="albumTemplateSelector"
+                                          AddItemTemplate="{StaticResource addImageItem}"/>
+    </ContentPage.Resources>
+   <Grid>
+       <CollectionView ItemTemplate="{StaticResource albumTemplateSelector}">
+           
+       </CollectionView>
+   </Grid>
+
+</ContentPage>
