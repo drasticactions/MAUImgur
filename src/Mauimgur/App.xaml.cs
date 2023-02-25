@@ -1,11 +1,15 @@
-﻿namespace Mauimgur;
+﻿// <copyright file="App.xaml.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+namespace Mauimgur;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
+    public App()
+    {
+        this.InitializeComponent();
 
-		MainPage = new MainPage();
-	}
+        this.MainPage = new MainPage();
+    }
 }

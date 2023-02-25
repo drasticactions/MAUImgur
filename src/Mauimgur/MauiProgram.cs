@@ -1,4 +1,8 @@
-﻿using Drastic.Services;
+﻿// <copyright file="MauiProgram.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using Drastic.Services;
 using Mauimgur.Services;
 using Microsoft.Extensions.Logging;
 
@@ -6,21 +10,20 @@ namespace Mauimgur;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("CatalystButton", (handler, view) =>
-		{
+    public static MauiApp CreateMauiApp()
+    {
+        Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("CatalystButton", (handler, view) =>
+        {
 #if MACCATALYST
 #pragma warning disable CA1416 // プラットフォームの互換性を検証
             handler.PlatformView.PreferredBehavioralStyle = UIKit.UIBehavioralStyle.Pad;
 #pragma warning restore CA1416 // プラットフォームの互換性を検証
 #endif
         });
-		var builder = MauiApp.CreateBuilder();
-
-		builder.Services!
-	   .AddSingleton<IErrorHandlerService, ErrorHandlerService>()
-	   .AddSingleton<IAppDispatcher, AppDispatcherService>();
+        var builder = MauiApp.CreateBuilder();
+        builder.Services!
+       .AddSingleton<IErrorHandlerService, ErrorHandlerService>()
+       .AddSingleton<IAppDispatcher, AppDispatcherService>();
 
         builder
             .UseMauiApp<App>()
@@ -34,5 +37,5 @@ public static class MauiProgram
 #endif
 
         return builder.Build();
-	}
+    }
 }
