@@ -25,8 +25,7 @@ public class ImgurServiceTests : IClassFixture<ImgurServiceSetup>
     }
 
     [Fact]
-    public void Test1()
+    public async Task UploadImage()
     {
-
     }
 }

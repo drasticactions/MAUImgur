@@ -9,6 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Bulk\1.png" />
+    <None Remove="Images\Bulk\2.png" />
+    <None Remove="Images\Bulk\3.png" />
+    <None Remove="Images\Bulk\4.png" />
+    <None Remove="Images\Image.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Bulk\1.png" />
+    <EmbeddedResource Include="Images\Bulk\2.png" />
+    <EmbeddedResource Include="Images\Bulk\3.png" />
+    <EmbeddedResource Include="Images\Bulk\4.png" />
+    <EmbeddedResource Include="Images\Image.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
