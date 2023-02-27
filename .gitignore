@@ -265,3 +265,4 @@ __pycache__/
 # Mobile.BuildTools
 secrets.json
 secrets.*.json
+src/Mauimgur.Tests/ImgurServiceSetup.cs
