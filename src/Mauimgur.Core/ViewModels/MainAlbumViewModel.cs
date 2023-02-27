@@ -5,10 +5,17 @@
 using System;
 using Drastic.ViewModels;
 
-namespace Mauimgur.ViewModels
+namespace Mauimgur.Core.ViewModels
 {
+    /// <summary>
+    /// Main Album View Model.
+    /// </summary>
     public class MainAlbumViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainAlbumViewModel"/> class.
+        /// </summary>
+        /// <param name="services">IServiceProvider.</param>
         public MainAlbumViewModel(IServiceProvider services)
             : base(services)
         {

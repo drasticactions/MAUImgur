@@ -59,10 +59,11 @@
 
 	<ItemGroup>
 	  <None Remove="Utilities\" />
-	  <None Remove="ViewModels\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Utilities\" />
-	  <Folder Include="ViewModels\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
 	</ItemGroup>
 </Project>

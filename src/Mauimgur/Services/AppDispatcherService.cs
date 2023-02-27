@@ -7,12 +7,12 @@ using Drastic.Services;
 
 namespace Mauimgur.Services
 {
+    /// <summary>
+    /// MAUI App Dispatcher Service.
+    /// </summary>
     public class AppDispatcherService : IAppDispatcher
     {
-        public AppDispatcherService()
-        {
-        }
-
+        /// <inheritdoc/>
         public bool Dispatch(Action action)
         {
             return Microsoft.Maui.Controls.Application.Current!.Dispatcher.Dispatch(action);

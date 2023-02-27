@@ -8,8 +8,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Mauimgur;
 
+/// <summary>
+/// Main Maui Program.
+/// </summary>
 public static class MauiProgram
 {
+    /// <summary>
+    /// Create MAUI app.
+    /// </summary>
+    /// <returns><see cref="MauiApp"/>.</returns>
     public static MauiApp CreateMauiApp()
     {
         Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("CatalystButton", (handler, view) =>

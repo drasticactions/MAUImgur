@@ -3,17 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Mauimgur.Utilities"
              x:Class="Mauimgur.MainPage">
-    <ContentPage.Resources>
-        <DataTemplate x:Key="addImageItem">
-            
-        </DataTemplate>
-        <local:AlbumTemplateSelector x:Key="albumTemplateSelector"
-                                          AddItemTemplate="{StaticResource addImageItem}"/>
-    </ContentPage.Resources>
-   <Grid>
-       <CollectionView ItemTemplate="{StaticResource albumTemplateSelector}">
-           
-       </CollectionView>
-   </Grid>
 
 </ContentPage>
