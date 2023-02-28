@@ -10,7 +10,7 @@ namespace Mauimgur.Core.ViewModels
     /// <summary>
     /// Main Album View Model.
     /// </summary>
-    public class MainAlbumViewModel : BaseViewModel
+    public class MainAlbumViewModel : MauimgurViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainAlbumViewModel"/> class.
