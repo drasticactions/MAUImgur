@@ -52,7 +52,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Drastic.DragAndDrop.Maui" Version="1.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Imgur.API" Version="5.0.0" />
 		<PackageReference Include="Drastic.Utilities" Version="1.0.10" />

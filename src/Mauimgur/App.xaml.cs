@@ -21,8 +21,9 @@ public partial class App : Application
         this.provider = provider;
     }
 
+    /// <inheritdoc/>
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Drastic.DragAndDrop.Maui.DragAndDropWindow(new Drastic.DragAndDrop.Maui.DragElementOverlay(Color.FromRgba(225, 0, 0, .2))) { Page = new MainPage(this.provider) };
+        return new Window() { Page = new MainPage(this.provider) };
     }
 }
