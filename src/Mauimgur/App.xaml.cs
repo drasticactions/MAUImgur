@@ -9,13 +9,20 @@ namespace Mauimgur;
 /// </summary>
 public partial class App : Application
 {
+    private IServiceProvider provider;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="App"/> class.
     /// </summary>
-    public App()
+    /// <param name="provider">Service Provider.</param>
+    public App(IServiceProvider provider)
     {
         this.InitializeComponent();
+        this.provider = provider;
+    }
 
-        this.MainPage = new MainPage();
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Drastic.DragAndDrop.Maui.DragAndDropWindow(new Drastic.DragAndDrop.Maui.DragElementOverlay(Color.FromRgba(225, 0, 0, .2))) { Page = new MainPage(this.provider) };
     }
 }
