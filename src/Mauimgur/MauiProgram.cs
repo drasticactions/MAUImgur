@@ -4,6 +4,7 @@
 
 using Drastic.Services;
 using Mauimgur.Core.Services;
+using Mauimgur.Core.ViewModels;
 using Mauimgur.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
@@ -35,7 +36,9 @@ public static class MauiProgram
         builder.Services!
        .AddSingleton<IErrorHandlerService, ErrorHandlerService>()
        .AddSingleton<IAppDispatcher, AppDispatcherService>()
-       .AddSingleton<IPlatformServices, MauiPlatformServices>();
+       .AddSingleton<IPlatformServices, MauiPlatformServices>()
+       .AddSingleton<ImageUploadViewModel>()
+       ;
 
 #if WINDOWS
         builder.ConfigureLifecycleEvents(events =>

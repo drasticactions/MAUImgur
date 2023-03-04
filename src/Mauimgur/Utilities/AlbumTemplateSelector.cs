@@ -6,10 +6,14 @@ using System;
 
 namespace Mauimgur.Utilities
 {
+    /// <summary>
+    /// Album Template Selector.
+    /// </summary>
     public class AlbumTemplateSelector : DataTemplateSelector
     {
         public DataTemplate? AddItemTemplate { get; set; }
 
+        /// <inheritdoc/>
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             if (item is Imgur.API.Models.Image img)

@@ -8,8 +8,12 @@ using Mauimgur.Models;
 
 namespace Mauimgur.Services
 {
+    /// <summary>
+    /// MAUI Platform Services.
+    /// </summary>
     public class MauiPlatformServices : IPlatformServices
     {
+        /// <inheritdoc/>
         public async Task<IEnumerable<IMediaFile>> SelectFilesAsync()
         {
 #if IOS

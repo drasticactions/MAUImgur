@@ -47,9 +47,9 @@ namespace Mauimgur.Core.Services
         public Task UploadImageAsync(IMediaFile fileStream, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
          => this.UploadImagesAsync(new List<IMediaFile>() { fileStream }, totalProgress, album, name, title, description, bufferSize, cancellationToken);
 
-        public async Task UploadImagesAsync(List<IMediaFile> fileStreams, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task UploadImagesAsync(IEnumerable<IMediaFile> fileStreams, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var totalFiles = fileStreams.Count;
+            var totalFiles = fileStreams.Count();
             var completedUploads = 0;
             foreach (var stream in fileStreams)
             {

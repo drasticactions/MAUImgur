@@ -4,6 +4,7 @@
 
 using Drastic.Tools;
 using Mauimgur.Core.Services;
+using Mauimgur.Core.ViewModels;
 
 namespace Mauimgur;
 
@@ -21,10 +22,22 @@ public partial class DebugPage : ContentPage
         this.InitializeComponent();
 
         this.platformServices = this.serviceProvider.GetService<IPlatformServices>()!;
+        this.ImageUploadVM = this.serviceProvider.GetService<ImageUploadViewModel>()!;
+        this.ImageUploadButtons.BindingContext = this.ImageUploadVM;
     }
+
+    /// <summary>
+    /// Gets the image upload VM.
+    /// </summary>
+    public ImageUploadViewModel ImageUploadVM { get; }
 
     private void SelectFilesButton_Clicked(object sender, EventArgs e)
     {
         this.platformServices.SelectFilesAsync().FireAndForgetSafeAsync();
+    }
+
+    void ShowResultWindow_Clicked(object sender, System.EventArgs e)
+    {
+        ((MainWindow)this.GetParentWindow()).ShowResultScreen();
     }
 }

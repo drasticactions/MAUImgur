@@ -24,6 +24,6 @@ public partial class App : Application
     /// <inheritdoc/>
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window() { Page = new DebugPage(this.provider) };
+        return new MainWindow(this.provider) { Page = new DebugPage(this.provider) };
     }
 }
