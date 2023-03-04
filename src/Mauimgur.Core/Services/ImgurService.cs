@@ -44,16 +44,16 @@ namespace Mauimgur.Core.Services
             this.imageEndpoint = new ImageEndpoint(this.apiClient, this.client);
         }
 
-        public Task UploadImageAsync(Stream fileStream, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
-         => this.UploadImagesAsync(new List<Stream>() { fileStream }, totalProgress, album, name, title, description, bufferSize, cancellationToken);
+        public Task UploadImageAsync(IMediaFile fileStream, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
+         => this.UploadImagesAsync(new List<IMediaFile>() { fileStream }, totalProgress, album, name, title, description, bufferSize, cancellationToken);
 
-        public async Task UploadImagesAsync(List<Stream> fileStreams, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task UploadImagesAsync(List<IMediaFile> fileStreams, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
         {
             var totalFiles = fileStreams.Count;
             var completedUploads = 0;
             foreach (var stream in fileStreams)
             {
-                var result = await this.imageEndpoint.UploadImageAsync(stream, album, name, title, description, null, bufferSize, cancellationToken);
+                var result = await this.imageEndpoint.UploadImageAsync(await stream.OpenReadAsync(), album, name, title, description, null, bufferSize, cancellationToken);
                 completedUploads += 1;
                 totalProgress?.Report(new ImageUploadUpdate(completedUploads, totalFiles, result));
             }

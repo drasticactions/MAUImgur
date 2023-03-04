@@ -3,8 +3,11 @@
 // </copyright>
 
 using Drastic.Services;
+using Mauimgur.Core.Services;
 using Mauimgur.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
+using Microsoft.Maui.Storage;
 
 namespace Mauimgur;
 
@@ -27,10 +30,28 @@ public static class MauiProgram
 #pragma warning restore CA1416 // プラットフォームの互換性を検証
 #endif
         });
+
         var builder = MauiApp.CreateBuilder();
         builder.Services!
        .AddSingleton<IErrorHandlerService, ErrorHandlerService>()
-       .AddSingleton<IAppDispatcher, AppDispatcherService>();
+       .AddSingleton<IAppDispatcher, AppDispatcherService>()
+       .AddSingleton<IPlatformServices, MauiPlatformServices>();
+
+#if WINDOWS
+        builder.ConfigureLifecycleEvents(events =>
+        {
+            events.AddWindows(wndLifeCycleBuilder =>
+            {
+                wndLifeCycleBuilder.OnWindowCreated(window =>
+                {
+                    var manager = WinUIEx.WindowManager.Get(window);
+                    manager.MinWidth = 640;
+                    manager.MinHeight = 480;
+                    manager.Backdrop = new WinUIEx.MicaSystemBackdrop();
+                });
+            });
+        });
+#endif
 
         builder
             .UseMauiApp<App>()

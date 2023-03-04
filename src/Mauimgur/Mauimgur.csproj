@@ -58,6 +58,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="WinUIEx" Version="2.1.0" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Utilities\" />
 	</ItemGroup>
 	<ItemGroup>
@@ -65,5 +69,10 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="DebugPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>

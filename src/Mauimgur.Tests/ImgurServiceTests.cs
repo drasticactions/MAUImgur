@@ -29,7 +29,6 @@ public class ImgurServiceTests : IClassFixture<ImgurServiceSetup>
     public async Task UploadImage()
     {
         using var token = new CancellationTokenSource();
-        await using var file = File.OpenRead(@"Images/Image.png");
         var progress = new Progress<ImageUploadUpdate>();
         progress.ProgressChanged += (sender, update) =>
         {
@@ -39,8 +38,25 @@ public class ImgurServiceTests : IClassFixture<ImgurServiceSetup>
             token.Cancel();
         };
 
-        await this.imgurService.UploadImageAsync(file, progress);
+        await this.imgurService.UploadImageAsync(new TestMediaFile(@"Images/Image.png"), progress);
         Assert.True(await this.CompletedTask(10000, token.Token));
+    }
+
+    private class TestMediaFile : IMediaFile
+    {
+
+        public TestMediaFile(string path)
+        {
+            this.FullPath = path;
+        }
+
+        public string FullPath { get; }
+
+        public string ContentType => throw new NotImplementedException();
+
+        public string FileName => throw new NotImplementedException();
+
+        public Task<Stream> OpenReadAsync() => Task.FromResult((Stream)File.OpenRead(this.FullPath));
     }
 
     private async Task<bool> CompletedTask(int timeout, CancellationToken token)
