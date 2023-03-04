@@ -12,8 +12,13 @@ namespace Mauimgur.Services
     {
         public async Task<IEnumerable<IMediaFile>> SelectFilesAsync()
         {
+#if IOS
+            var photo = await MediaPicker.Default.PickPhotoAsync(new MediaPickerOptions());
+            return new List<IMediaFile>() { new MauiMediaFile(photo) };
+#else
             IEnumerable<FileResult> results = await FilePicker.Default.PickMultipleAsync(new PickOptions() { });
             return results.Select(n => new MauiMediaFile(n));
+#endif
         }
     }
 }
