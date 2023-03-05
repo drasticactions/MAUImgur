@@ -25,7 +25,6 @@ namespace Mauimgur.Core.Services
                 this.databasePath = databasePath;
             }
 
-            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(databasePath)!);
             this.Database.EnsureCreated();
         }
 

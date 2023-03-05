@@ -53,11 +53,8 @@ namespace Mauimgur.Core.Services
             var completedUploads = 0;
             foreach (var stream in fileStreams)
             {
-                using var memorystream = new MemoryStream();
                 using var streamTest = await stream.OpenReadAsync();
-                await streamTest.CopyToAsync(memorystream);
-                memorystream.Position = 0;
-                var result = await this.imageEndpoint.UploadImageAsync(memorystream, album, name, title, description, null, bufferSize, cancellationToken);
+                var result = await this.imageEndpoint.UploadImageAsync(streamTest, album, name, title, description, null, bufferSize, cancellationToken);
                 completedUploads += 1;
                 totalProgress?.Report(new ImageUploadUpdate(completedUploads, totalFiles, result));
             }

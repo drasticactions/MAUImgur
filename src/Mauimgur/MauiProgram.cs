@@ -37,6 +37,10 @@ public static class MauiProgram
 
 #if MACCATALYST
         path = System.IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.LocalApplicationData), "MAUImgur", "database.db");
+        System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path)!);
+#elif WINDOWS
+        path = System.IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.LocalApplicationData), "MAUImgur", "database.db");
+        System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path)!);
 #endif
 
         var builder = MauiApp.CreateBuilder();
