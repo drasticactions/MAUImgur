@@ -9,6 +9,7 @@ using Mauimgur.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.Maui.Storage;
+using static System.Environment;
 
 namespace Mauimgur;
 
@@ -32,11 +33,19 @@ public static class MauiProgram
 #endif
         });
 
+        var path = "database.db";
+
+#if MACCATALYST
+        path = System.IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.LocalApplicationData), "MAUImgur", "database.db");
+#endif
+
         var builder = MauiApp.CreateBuilder();
         builder.Services!
        .AddSingleton<IErrorHandlerService, ErrorHandlerService>()
        .AddSingleton<IAppDispatcher, AppDispatcherService>()
        .AddSingleton<IPlatformServices, MauiPlatformServices>()
+       .AddSingleton<ImgurService>(new ImgurService(Core.Utilities.Tokens.GetImgurClientId(), Core.Utilities.Tokens.GetImgurClientSecret()))
+       .AddSingleton<DatabaseService>(new DatabaseService(path))
        .AddSingleton<ImageUploadViewModel>()
        ;
 

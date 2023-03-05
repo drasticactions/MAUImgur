@@ -10,6 +10,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Imgur.API" Version="5.0.0" />
 		<PackageReference Include="Drastic.Utilities" Version="1.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.3" />
 	</ItemGroup>
 	
 	<ItemGroup>

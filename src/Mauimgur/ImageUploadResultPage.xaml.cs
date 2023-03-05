@@ -24,6 +24,5 @@ public partial class ImageUploadResultPage : ContentPage
 
     private void Button_Clicked(object sender, System.EventArgs e)
     {
-        ((MainWindow)this.GetParentWindow()).CloseResultScreen();
     }
 }

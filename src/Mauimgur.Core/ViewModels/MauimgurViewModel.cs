@@ -21,12 +21,18 @@ public class MauimgurViewModel : BaseViewModel
     {
         this.Imgur = (ImgurService)this.Services.GetService(typeof(ImgurService))!;
         this.Platform = (IPlatformServices)this.Services.GetService(typeof(IPlatformServices))!;
+        this.Database = (DatabaseService)this.Services.GetService(typeof(DatabaseService))!;
     }
 
     /// <summary>
     /// Gets the platform services.
     /// </summary>
     public IPlatformServices Platform { get; }
+
+    /// <summary>
+    /// Gets the database Service.
+    /// </summary>
+    public DatabaseService Database { get; }
 
     /// <summary>
     /// Gets the Imgur Service.

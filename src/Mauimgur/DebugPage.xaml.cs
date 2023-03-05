@@ -38,6 +38,5 @@ public partial class DebugPage : ContentPage
 
     void ShowResultWindow_Clicked(object sender, System.EventArgs e)
     {
-        ((MainWindow)this.GetParentWindow()).ShowResultScreen();
     }
 }

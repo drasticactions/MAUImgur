@@ -41,8 +41,18 @@ public class ImageUploadViewModel : MauimgurViewModel
         await this.Imgur.UploadImagesAsync(files, this.ImageUploadProgress);
     }
 
+    private Task<int> SaveImageToDatabaseAsync(Imgur.API.Models.Image image)
+    {
+        return this.Database.AddOrUpdateImageAsync(image);
+    }
+
     private void ImageUploadProgress_ProgressChanged(object? sender, ImageUploadUpdate e)
     {
         this.IsBusy = !e.IsDone;
+
+        if (e.LastUpdated is not null)
+        {
+            this.SaveImageToDatabaseAsync((Imgur.API.Models.Image)e.LastUpdated).FireAndForgetSafeAsync(this.ErrorHandler);
+        }
     }
 }
