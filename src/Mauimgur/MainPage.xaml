@@ -11,7 +11,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Image Aspect="AspectFill" WidthRequest="200" HeightRequest="200" Source="{Binding Link}" />
+                    <Image Background="Green" Aspect="AspectFill" WidthRequest="200" HeightRequest="200" Source="{Binding Link}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

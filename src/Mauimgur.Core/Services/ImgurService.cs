@@ -60,7 +60,7 @@ namespace Mauimgur.Core.Services
                 var result = await this.imageEndpoint.UploadImageAsync(streamTest, album, name, title, description, null, bufferSize, cancellationToken);
                 completedUploads += 1;
                 totalProgress?.Report(new ImageUploadUpdate(completedUploads, totalFiles, result));
-                this.OnImageUploaded?.Invoke(this, new ImageUploadedEventArgs(result));
+                this.OnImageUploaded?.Invoke(this, new ImageUploadedEventArgs((Imgur.API.Models.Image)result));
             }
         }
     }
