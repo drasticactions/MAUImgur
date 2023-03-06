@@ -2,6 +2,8 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
+using Mauimgur.Core.ViewModels;
+
 namespace Mauimgur;
 
 /// <summary>
@@ -9,6 +11,8 @@ namespace Mauimgur;
 /// </summary>
 public partial class MainPage : ContentPage
 {
+    private IServiceProvider provider;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="MainPage"/> class.
     /// </summary>
@@ -16,7 +20,14 @@ public partial class MainPage : ContentPage
     public MainPage(IServiceProvider provider)
     {
         this.InitializeComponent();
+        this.provider = provider;
+        this.BindingContext = this.VM = provider.GetService<MainAlbumViewModel>()!;
     }
+
+    /// <summary>
+    /// Gets the View Model.
+    /// </summary>
+    public MainAlbumViewModel VM { get; }
 
     /// <inheritdoc/>
     protected override void OnAppearing()

@@ -6,6 +6,7 @@ using System;
 using Imgur.API;
 using Imgur.API.Authentication;
 using Imgur.API.Endpoints;
+using Mauimgur.Core.Events;
 using Mauimgur.Core.Models;
 
 namespace Mauimgur.Core.Services
@@ -32,6 +33,8 @@ namespace Mauimgur.Core.Services
             this.imageEndpoint = new ImageEndpoint(this.apiClient, this.client);
         }
 
+        public event EventHandler<ImageUploadedEventArgs>? OnImageUploaded;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ImgurService"/> class.
         /// </summary>
@@ -57,6 +60,7 @@ namespace Mauimgur.Core.Services
                 var result = await this.imageEndpoint.UploadImageAsync(streamTest, album, name, title, description, null, bufferSize, cancellationToken);
                 completedUploads += 1;
                 totalProgress?.Report(new ImageUploadUpdate(completedUploads, totalFiles, result));
+                this.OnImageUploaded?.Invoke(this, new ImageUploadedEventArgs(result));
             }
         }
     }

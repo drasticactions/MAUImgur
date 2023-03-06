@@ -54,6 +54,7 @@ public static class MauiProgram
        .AddSingleton<ImgurService>(new ImgurService(Core.Utilities.Tokens.GetImgurClientId(), Core.Utilities.Tokens.GetImgurClientSecret()))
        .AddSingleton<DatabaseService>(new DatabaseService(path))
        .AddSingleton<ImageUploadViewModel>()
+       .AddSingleton<MainAlbumViewModel>()
        ;
 
 #if WINDOWS

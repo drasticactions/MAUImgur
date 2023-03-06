@@ -14,7 +14,7 @@ public partial class ImageUploadResultPage : ContentPage
     {
         this.InitializeComponent();
         this.provider = provider;
-        this.VM = provider.GetService<ImageUploadViewModel>()!;
+        this.BindingContext = this.VM = provider.GetService<ImageUploadViewModel>()!;
     }
 
     /// <summary>
