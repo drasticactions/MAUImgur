@@ -15,6 +15,7 @@ public partial class DebugPage : ContentPage
 {
     private IServiceProvider serviceProvider;
     private IPlatformServices platformServices;
+    private ImgurService imgur;
 
     public DebugPage(IServiceProvider provider)
     {
@@ -23,6 +24,7 @@ public partial class DebugPage : ContentPage
 
         this.platformServices = this.serviceProvider.GetService<IPlatformServices>()!;
         this.ImageUploadVM = this.serviceProvider.GetService<ImageUploadViewModel>()!;
+        this.imgur = this.serviceProvider.GetService<ImgurService>()!;
         this.ImageUploadButtons.BindingContext = this.ImageUploadVM;
     }
 
@@ -38,5 +40,23 @@ public partial class DebugPage : ContentPage
 
     void ShowResultWindow_Clicked(object sender, System.EventArgs e)
     {
+    }
+
+    async void TestAuthButton_Clicked(object sender, System.EventArgs e)
+    {
+        try
+        {
+            WebAuthenticatorResult authResult = await WebAuthenticator.Default.AuthenticateAsync(
+                new Uri(this.imgur.AuthUrl),
+                new Uri("mauimgur://"));
+
+            string? accessToken = authResult?.AccessToken;
+
+            // Do something with the token
+        }
+        catch (TaskCanceledException)
+        {
+            // Use stopped auth
+        }
     }
 }

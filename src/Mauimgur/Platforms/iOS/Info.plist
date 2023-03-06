@@ -28,5 +28,17 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+	<dict>
+		<key>CFBundleURLName</key>
+		<string>MAUImgur</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>mauimgur</string>
+		</array>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+	</dict>
 </dict>
 </plist>

@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Net.Http;
 using Imgur.API;
 using Imgur.API.Authentication;
 using Imgur.API.Endpoints;
@@ -19,6 +20,7 @@ namespace Mauimgur.Core.Services
         private ApiClient apiClient;
         private HttpClient client;
         private ImageEndpoint imageEndpoint;
+        private OAuth2Endpoint oauth2Endpoint;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImgurService"/> class.
@@ -31,9 +33,8 @@ namespace Mauimgur.Core.Services
             this.apiClient = new ApiClient(clientId, clientSecret);
             this.client = client ?? new HttpClient();
             this.imageEndpoint = new ImageEndpoint(this.apiClient, this.client);
+            this.oauth2Endpoint = new OAuth2Endpoint(this.apiClient, this.client);
         }
-
-        public event EventHandler<ImageUploadedEventArgs>? OnImageUploaded;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImgurService"/> class.
@@ -45,7 +46,12 @@ namespace Mauimgur.Core.Services
             this.apiClient = apiClient;
             this.client = client ?? new HttpClient();
             this.imageEndpoint = new ImageEndpoint(this.apiClient, this.client);
+            this.oauth2Endpoint = new OAuth2Endpoint(this.apiClient, this.client);
         }
+
+        public event EventHandler<ImageUploadedEventArgs>? OnImageUploaded;
+
+        public string AuthUrl => this.oauth2Endpoint.GetAuthorizationUrl();
 
         public Task UploadImageAsync(IMediaFile fileStream, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
          => this.UploadImagesAsync(new List<IMediaFile>() { fileStream }, totalProgress, album, name, title, description, bufferSize, cancellationToken);
