@@ -7,6 +7,7 @@ using System.Net.Http;
 using Imgur.API;
 using Imgur.API.Authentication;
 using Imgur.API.Endpoints;
+using Imgur.API.Models;
 using Mauimgur.Core.Events;
 using Mauimgur.Core.Models;
 
@@ -53,6 +54,8 @@ namespace Mauimgur.Core.Services
 
         public string AuthUrl => this.oauth2Endpoint.GetAuthorizationUrl();
 
+        public OAuth2Token? OAuth2Token => this.apiClient.OAuth2Token as Imgur.API.Models.OAuth2Token;
+
         public Task UploadImageAsync(IMediaFile fileStream, IProgress<ImageUploadUpdate>? totalProgress = null, string? album = null, string? name = null, string? title = null, string? description = null, int? bufferSize = 4096, CancellationToken cancellationToken = default(CancellationToken))
          => this.UploadImagesAsync(new List<IMediaFile>() { fileStream }, totalProgress, album, name, title, description, bufferSize, cancellationToken);
 
@@ -68,6 +71,27 @@ namespace Mauimgur.Core.Services
                 totalProgress?.Report(new ImageUploadUpdate(completedUploads, totalFiles, result));
                 this.OnImageUploaded?.Invoke(this, new ImageUploadedEventArgs((Imgur.API.Models.Image)result));
             }
+        }
+
+        public async Task<OAuth2Token> LoginWithWebAuthenticatorResultAsync(CustomWebAuthenticatorResult result)
+        {
+            var token = new OAuth2Token {
+                AccessToken = result.AccessToken,
+                RefreshToken = result.RefreshToken,
+                AccountId = Convert.ToInt32(result.Properties["account_id"]),
+                AccountUsername = result.Properties["account_username"],
+                ExpiresIn = result.ExpiresInNumber,
+                TokenType = result.Properties["token_type"],
+            };
+
+            await this.LoginWithTokensAsync(token);
+
+            return token;
+        }
+
+        public async Task LoginWithTokensAsync(OAuth2Token token)
+        {
+            this.apiClient.SetOAuth2Token(token);
         }
     }
 }

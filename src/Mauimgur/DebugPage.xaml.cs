@@ -3,6 +3,7 @@
 // </copyright>
 
 using Drastic.Tools;
+using Mauimgur.Core.Models;
 using Mauimgur.Core.Services;
 using Mauimgur.Core.ViewModels;
 
@@ -44,19 +45,21 @@ public partial class DebugPage : ContentPage
 
     async void TestAuthButton_Clicked(object sender, System.EventArgs e)
     {
-        try
-        {
-            WebAuthenticatorResult authResult = await WebAuthenticator.Default.AuthenticateAsync(
+#if WINDOWS
+        await Windows.System.Launcher.LaunchUriAsync(new Uri(this.imgur.AuthUrl));
+#else
+        try {
+            Microsoft.Maui.Authentication.WebAuthenticatorResult authResult = await WebAuthenticator.Default.AuthenticateAsync(
                 new Uri(this.imgur.AuthUrl),
                 new Uri("mauimgur://"));
 
-            string? accessToken = authResult?.AccessToken;
-
+            var test = new CustomWebAuthenticatorResult() { Properties = authResult.Properties };
+            this.imgur.LoginWithWebAuthenticatorResultAsync(test).FireAndForgetSafeAsync();
             // Do something with the token
         }
-        catch (TaskCanceledException)
-        {
+        catch (TaskCanceledException) {
             // Use stopped auth
         }
+#endif
     }
 }

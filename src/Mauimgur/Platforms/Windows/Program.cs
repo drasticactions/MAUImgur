@@ -1,4 +1,7 @@
-﻿using Microsoft.UI.Dispatching;
+﻿using Drastic.Tools;
+using Mauimgur.Core.Models;
+using Mauimgur.Core.Services;
+using Microsoft.UI.Dispatching;
 using Microsoft.Windows.AppLifecycle;
 
 namespace Mauimgur.WinUI {
@@ -43,6 +46,12 @@ namespace Mauimgur.WinUI {
 
         private static void OnActivated(object? sender, AppActivationArguments args) {
             ExtendedActivationKind kind = args.Kind;
+            if (kind is ExtendedActivationKind.Protocol) {
+                var data = (Windows.ApplicationModel.Activation.ProtocolActivatedEventArgs)args.Data;
+                var response = new CustomWebAuthenticatorResult(data.Uri);
+                var imgurService = MauiWinUIApplication.Current.Services.GetService<ImgurService>()!;
+                imgurService.LoginWithWebAuthenticatorResultAsync(response).FireAndForgetSafeAsync();
+            }
         }
     }
 }
