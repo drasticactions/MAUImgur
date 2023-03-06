@@ -66,9 +66,11 @@
 
 	<ItemGroup>
 	  <None Remove="Utilities\" />
+	  <None Remove="Controls\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Utilities\" />
+	  <Folder Include="Controls\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
