@@ -9,7 +9,7 @@
         <CollectionView SelectionMode="Single" ItemsSource="{Binding Images}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                   <Grid Background="Red" ColumnDefinitions="150, *">
+                   <Grid ColumnDefinitions="150, *">
                         <Image VerticalOptions="Center" Grid.Column="0" Background="Green" Aspect="AspectFill" WidthRequest="100" HeightRequest="100" Source="{Binding Link}" />
                         <Grid VerticalOptions="Start" RowDefinitions="Auto" Grid.Column="1">
                             <Label Grid.Row="0" MaxLines="1" Text="{Binding DateTime, Converter={StaticResource TicksToDatetimeConverter}, StringFormat='{0:D}'}"/>
