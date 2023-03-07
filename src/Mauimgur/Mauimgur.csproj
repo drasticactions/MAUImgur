@@ -73,6 +73,9 @@
 	  <Folder Include="Controls\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.DragAndDrop.Maui\Drastic.DragAndDrop.Maui.csproj" />
+	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.DragAndDrop\Drastic.DragAndDrop.csproj" />
+	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.Overlay\Drastic.Overlay.csproj" />
 	  <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
 	</ItemGroup>
 	<ItemGroup>

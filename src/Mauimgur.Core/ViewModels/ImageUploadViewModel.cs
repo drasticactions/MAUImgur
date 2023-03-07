@@ -38,6 +38,11 @@ public class ImageUploadViewModel : MauimgurViewModel
     private async Task SelectAndUploadMedia()
     {
         var files = await this.Platform.SelectFilesAsync();
+        await this.UploadMedia(files);
+    }
+
+    public async Task UploadMedia(IEnumerable<IMediaFile> files)
+    {
         await this.Imgur.UploadImagesAsync(files, this.ImageUploadProgress);
     }
 

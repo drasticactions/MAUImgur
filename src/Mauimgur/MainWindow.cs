@@ -3,15 +3,19 @@
 // </copyright>
 
 using System;
+using Drastic.DragAndDrop.Maui;
 using Drastic.Tools;
+using Mauimgur.Core.Services;
 using Mauimgur.Core.ViewModels;
+using Mauimgur.Models;
+using Mauimgur.Platforms.Windows;
 
 namespace Mauimgur
 {
     /// <summary>
     /// Main Window.
     /// </summary>
-    public class MainWindow : Window
+    public class MainWindow : DragAndDropWindow
     {
         private IServiceProvider provider;
         private ImageUploadViewModel imageUploadVM;
@@ -24,12 +28,34 @@ namespace Mauimgur
         /// <param name="page">Default Detail Page.</param>
         /// <param name="provider">IServiceProvider.</param>
         public MainWindow(Page page, IServiceProvider provider)
+            : base(new Drastic.DragAndDrop.Maui.DragElementOverlay(Color.FromRgba(225, 0, 0, .2)))
         {
             this.Page = page;
             this.provider = provider;
             this.imageUploadVM = this.provider.GetService<ImageUploadViewModel>()!;
             this.resultPage = new ImageUploadResultPage(this.provider);
             this.imageUploadVM.ImageUploadProgress.ProgressChanged += this.ImageUploadProgress_ProgressChanged;
+            this.Drop += MainWindow_Drop;
+        }
+
+        private async void MainWindow_Drop(object? sender, Drastic.DragAndDrop.DragAndDropOverlayTappedEventArgs e)
+        {
+            Task.Run(async () => {
+#if WINDOWS
+                var storageFiles = new List<Windows.Storage.StorageFile>();
+                foreach (var file in e.Paths) {
+                    storageFiles.Add(await Windows.Storage.StorageFile.GetFileFromPathAsync(file));
+                }
+
+                var results = storageFiles.Select(n => new WindowsMediaFile(n));
+#else
+                var results = e.Paths.Select(n => new MauiMediaFile(new FileResult(n)));
+#endif
+
+                var test = results.FirstOrDefault();
+                var fart = test!.OpenReadAsync();
+                this.imageUploadVM.UploadMedia(results).FireAndForgetSafeAsync();
+            }).FireAndForgetSafeAsync();
         }
 
         private void ImageUploadProgress_ProgressChanged(object? sender, Core.Models.ImageUploadUpdate e)

@@ -9,6 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mauimgur.Core", "Mauimgur.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mauimgur.Tests", "Mauimgur.Tests\Mauimgur.Tests.csproj", "{6B136BE6-CB3C-4CB2-BF8A-DD6AAA1EB140}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.DragAndDrop", "..\external\Drastic.Tools\src\Drastic.DragAndDrop\Drastic.DragAndDrop.csproj", "{73F4D1A4-07EE-4845-85EC-B13BFAE8736A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.DragAndDrop.Maui", "..\external\Drastic.Tools\src\Drastic.DragAndDrop.Maui\Drastic.DragAndDrop.Maui.csproj", "{233E8DC3-F5EF-453B-9DE4-0A7A7751F89F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Overlay", "..\external\Drastic.Tools\src\Drastic.Overlay\Drastic.Overlay.csproj", "{91F21227-8CB7-4CDA-B271-B491209AD3DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,8 +34,23 @@ Global
 		{6B136BE6-CB3C-4CB2-BF8A-DD6AAA1EB140}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B136BE6-CB3C-4CB2-BF8A-DD6AAA1EB140}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B136BE6-CB3C-4CB2-BF8A-DD6AAA1EB140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F4D1A4-07EE-4845-85EC-B13BFAE8736A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F4D1A4-07EE-4845-85EC-B13BFAE8736A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F4D1A4-07EE-4845-85EC-B13BFAE8736A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F4D1A4-07EE-4845-85EC-B13BFAE8736A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233E8DC3-F5EF-453B-9DE4-0A7A7751F89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233E8DC3-F5EF-453B-9DE4-0A7A7751F89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233E8DC3-F5EF-453B-9DE4-0A7A7751F89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233E8DC3-F5EF-453B-9DE4-0A7A7751F89F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F21227-8CB7-4CDA-B271-B491209AD3DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F21227-8CB7-4CDA-B271-B491209AD3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F21227-8CB7-4CDA-B271-B491209AD3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F21227-8CB7-4CDA-B271-B491209AD3DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96F95AF4-48B2-44EA-B87B-2E0962132038}
 	EndGlobalSection
 EndGlobal
