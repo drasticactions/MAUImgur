@@ -38,6 +38,11 @@ namespace Mauimgur.Core.Services
         /// </summary>
         public DbSet<Imgur.API.Models.Image>? Images { get; set; }
 
+        /// <summary>
+        /// Gets or sets the auth tokens.
+        /// </summary>
+        public DbSet<Imgur.API.Models.OAuth2Token>? Auth { get; set; }
+
         public async Task<int> AddOrUpdateImageAsync(Imgur.API.Models.Image image)
         {
             if (await this.Images!.AnyAsync(n => n.Id == image.Id))
@@ -47,6 +52,20 @@ namespace Mauimgur.Core.Services
             else
             {
                 await this.Images!.AddAsync(image);
+            }
+
+            return await this.SaveChangesAsync();
+        }
+
+        public async Task<int> AddOrUpdateOauthTokenAsync(Imgur.API.Models.OAuth2Token auth)
+        {
+            if (await this.Auth!.AnyAsync(n => n.AccountId == auth.AccountId))
+            {
+                this.Auth!.Update(auth);
+            }
+            else
+            {
+                await this.Auth!.AddAsync(auth);
             }
 
             return await this.SaveChangesAsync();
@@ -73,6 +92,7 @@ namespace Mauimgur.Core.Services
                 throw new ArgumentNullException(nameof(modelBuilder));
             }
 
+            modelBuilder.Entity<Imgur.API.Models.OAuth2Token>().HasKey(n => n.AccountId);
             modelBuilder.Entity<Imgur.API.Models.Image>().Ignore(n => n.Tags).HasKey(n => n.Id);
         }
     }

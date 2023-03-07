@@ -22,9 +22,12 @@ namespace Mauimgur.Core.ViewModels
             : base(services)
         {
             this.Images = new ObservableCollection<Imgur.API.Models.Image>();
+            this.AuthenticationCommand = new AsyncCommand(this.Platform.StartAuthenticationAsync, null, this.Dispatcher, this.ErrorHandler);
             this.Imgur.OnImageUploaded += this.Imgur_OnImageUploaded;
             this.OnLoad().FireAndForgetSafeAsync();
         }
+
+        public AsyncCommand AuthenticationCommand { get; }
 
         /// <summary>
         /// Gets the images.
