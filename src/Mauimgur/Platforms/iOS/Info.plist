@@ -40,5 +40,6 @@
 		<key>CFBundleTypeRole</key>
 		<string>Editor</string>
 	</dict>
+	</array>
 </dict>
 </plist>
