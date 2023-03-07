@@ -49,6 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\external\Imgur.API\src\Imgur.API\Imgur.API.csproj" />
     <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
   </ItemGroup>
 </Project>

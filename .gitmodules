@@ -1,3 +1,7 @@
 [submodule "external/Drastic.Tools"]
 	path = external/Drastic.Tools
 	url = git@github.com:drasticactions/Drastic.Tools.git
+[submodule "external/Imgur.API"]
+	path = external/Imgur.API
+	url = git@github.com:drasticactions/Imgur.API.git
+	branch = dev

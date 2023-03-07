@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.DragAndDrop.Maui", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Overlay", "..\external\Drastic.Tools\src\Drastic.Overlay\Drastic.Overlay.csproj", "{91F21227-8CB7-4CDA-B271-B491209AD3DC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Imgur.API", "..\external\Imgur.API\src\Imgur.API\Imgur.API.csproj", "{9381D7F6-D1B7-4C28-83F0-D7C816D26314}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{91F21227-8CB7-4CDA-B271-B491209AD3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91F21227-8CB7-4CDA-B271-B491209AD3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91F21227-8CB7-4CDA-B271-B491209AD3DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9381D7F6-D1B7-4C28-83F0-D7C816D26314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9381D7F6-D1B7-4C28-83F0-D7C816D26314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9381D7F6-D1B7-4C28-83F0-D7C816D26314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9381D7F6-D1B7-4C28-83F0-D7C816D26314}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,13 +2,9 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
-using System;
 using Drastic.DragAndDrop.Maui;
 using Drastic.Tools;
-using Mauimgur.Core.Services;
 using Mauimgur.Core.ViewModels;
-using Mauimgur.Models;
-using Mauimgur.Platforms.Windows;
 
 namespace Mauimgur
 {
@@ -47,9 +43,9 @@ namespace Mauimgur
                     storageFiles.Add(await Windows.Storage.StorageFile.GetFileFromPathAsync(file));
                 }
 
-                var results = storageFiles.Select(n => new WindowsMediaFile(n));
+                var results = storageFiles.Select(n => new Mauimgur.Platforms.Windows.WindowsMediaFile(n));
 #else
-                var results = e.Paths.Select(n => new MauiMediaFile(new FileResult(n)));
+                var results = e.Paths.Select(n => new Mauimgur.Models.MauiMediaFile(new FileResult(n)));
 #endif
 
                 var test = results.FirstOrDefault();
