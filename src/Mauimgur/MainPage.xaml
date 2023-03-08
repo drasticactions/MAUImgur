@@ -5,7 +5,7 @@
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              xmlns:controls="clr-namespace:Mauimgur.Controls"
              x:Class="Mauimgur.MainPage">
-    <Grid ColumnSpacing="5" ColumnDefinitions="500, *">
+    <Grid ColumnSpacing="5" ColumnDefinitions="*">
         <Grid RowDefinitions="100, *">
             <Grid Margin="10" ColumnDefinitions="Auto, *">
                 <Button VerticalOptions="Center" Command="{Binding AuthenticationCommand}" Text="Sign in" />
@@ -13,17 +13,19 @@
             <CollectionView Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Images}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                   <Grid ColumnDefinitions="150, *">
-                        <Image VerticalOptions="Center" Grid.Column="0" Background="Green" Aspect="AspectFill" WidthRequest="100" HeightRequest="100" Source="{Binding Link}" />
-                        <Grid VerticalOptions="Start" RowDefinitions="Auto" Grid.Column="1">
-                            <Label Grid.Row="0" MaxLines="1" Text="{Binding DateTime, Converter={StaticResource TicksToDatetimeConverter}, StringFormat='{0:D}'}"/>
-                        </Grid>
-                   </Grid>
+                     <VerticalStackLayout Spacing="8" Padding="10">
+                        <Border StrokeThickness="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="4" />
+                            </Border.StrokeShape>
+                            <Image Source="{Binding Link}" HeightRequest="110" />
+                        </Border>
+                        <Label Text="{Binding DateTime, Converter={StaticResource TicksToDatetimeConverter}}" FontSize="10" FontAttributes="Bold" />
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
         </Grid>
-        <controls:ImageDetailView Grid.Column="1" Margin="5" />
     </Grid>
 </ContentPage>
