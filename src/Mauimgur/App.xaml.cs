@@ -24,6 +24,18 @@ public partial class App : Application
     /// <inheritdoc/>
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new MainWindow(new MainPage(this.provider), this.provider);
+        return new MainWindow(new MainTabbedPage(this.provider), this.provider);
+    }
+}
+
+public class MainTabbedPage : TabbedPage
+{
+    private IServiceProvider provider;
+
+    public MainTabbedPage(IServiceProvider provider)
+    {
+        this.provider = provider;
+        this.Children.Add(new MainPage(this.provider));
+        this.Children.Add(new SettingsPage(this.provider));
     }
 }

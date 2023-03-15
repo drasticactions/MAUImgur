@@ -20,6 +20,7 @@ public partial class MainPage : ContentPage
     public MainPage(IServiceProvider provider)
     {
         this.InitializeComponent();
+        this.Title = "Images";
         this.provider = provider;
         this.BindingContext = this.VM = provider.GetService<MainAlbumViewModel>()!;
     }
