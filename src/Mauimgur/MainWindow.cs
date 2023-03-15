@@ -4,7 +4,9 @@
 
 using Drastic.DragAndDrop.Maui;
 using Drastic.Tools;
+using Drastic.TrayWindow;
 using Mauimgur.Core.ViewModels;
+using Microsoft.Maui.Platform;
 
 namespace Mauimgur
 {
@@ -17,6 +19,10 @@ namespace Mauimgur
         private ImageUploadViewModel imageUploadVM;
         private bool isBusy;
         private ImageUploadResultPage resultPage;
+
+#if MACCATALYST
+        private Drastic.DragAndDrop.DragAndDrop? DragAndDrop { get; set; }
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -33,6 +39,20 @@ namespace Mauimgur
             this.imageUploadVM.ImageUploadProgress.ProgressChanged += this.ImageUploadProgress_ProgressChanged;
             this.Drop += this.MainWindow_Drop;
         }
+
+#if MACCATALYST
+        public Drastic.Tray.TrayIcon? Icon { get; set; }
+
+        protected override void OnHandlerChanged()
+        {
+            var platform = (UIKit.UIWindow)this.Handler.PlatformView!;
+            Drastic.TrayWindow.NSApplication.Close(platform);
+            this.Icon = this.GenerateTrayIcon();
+            this.Icon.RightClicked += (object? sender, Drastic.Tray.TrayClickedEventArgs e) => this.Icon.OpenMenu();
+            base.OnHandlerChanged();
+        }
+
+#endif
 
         private async void MainWindow_Drop(object? sender, Drastic.DragAndDrop.DragAndDropOverlayTappedEventArgs e)
         {
@@ -61,5 +81,27 @@ namespace Mauimgur
         {
             this.isBusy = !e.IsDone;
         }
+
+#if MACCATALYST
+        private Drastic.Tray.TrayIcon GenerateTrayIcon()
+        {
+            var menuItems = new List<Drastic.Tray.TrayMenuItem>();
+            menuItems.Add(new Drastic.Tray.TrayMenuItem("Quit", null, async () => { Drastic.TrayWindow.NSApplication.Terminate(); }, "q"));
+            var trayIcon = new Drastic.Tray.TrayIcon("MAUImgur", new Drastic.Tray.TrayImage(UIKit.UIImage.GetSystemImage("photo.circle")!), menuItems);
+            if (UIKit.UIApplication.SharedApplication.Delegate is MauiTrayUIApplicationDelegate trayDelegate)
+            {
+                var control = this.Page!.ToUIViewController(Microsoft.Maui.Controls.Application.Current!.Handler.MauiContext!);
+                this.DragAndDrop = new Drastic.DragAndDrop.DragAndDrop(control);
+                this.DragAndDrop.Drop += this.MainWindow_Drop;
+                trayDelegate.CreateTrayWindow(trayIcon, new TrayWindowOptions(), control, false);
+            }
+            else
+            {
+                throw new ArgumentException("You must set your AppDelegate to use Drastic.TrayWindow.TrayAppDelegate");
+            }
+
+            return trayIcon;
+        }
+#endif
     }
 }

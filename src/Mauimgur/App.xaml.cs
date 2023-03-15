@@ -24,10 +24,6 @@ public partial class App : Application
     /// <inheritdoc/>
     protected override Window CreateWindow(IActivationState? activationState)
     {
-#if MACCATALYST
-        return new Mauimgur.Platforms.MacCatalyst.MacMockWindow(this.provider);
-#else
         return new MainWindow(new MainPage(this.provider), this.provider);
-#endif
     }
 }
