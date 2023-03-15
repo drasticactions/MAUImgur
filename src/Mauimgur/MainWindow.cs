@@ -46,7 +46,7 @@ namespace Mauimgur
         protected override void OnHandlerChanged()
         {
             var platform = (UIKit.UIWindow)this.Handler.PlatformView!;
-            Drastic.TrayWindow.NSApplication.Close(platform);
+            Drastic.TrayWindow.NSApplication.CloseWindow(platform).FireAndForgetSafeAsync();
             this.Icon = this.GenerateTrayIcon();
             this.Icon.RightClicked += (object? sender, Drastic.Tray.TrayClickedEventArgs e) => this.Icon.OpenMenu();
             base.OnHandlerChanged();
