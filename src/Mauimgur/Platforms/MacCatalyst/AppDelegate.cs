@@ -4,6 +4,7 @@
 
 using Drastic.TrayWindow;
 using Foundation;
+using UIKit;
 
 namespace Mauimgur;
 
@@ -11,4 +12,11 @@ namespace Mauimgur;
 public class AppDelegate : MauiTrayUIApplicationDelegate
 {
     protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+
+    public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+    {
+        NSApplication.SetActivationPolicy(NSApplicationActivationPolicy.Accessory);
+
+        return base.FinishedLaunching(application, launchOptions);
+    }
 }

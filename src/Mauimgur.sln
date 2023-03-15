@@ -17,6 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Overlay", "..\exter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Imgur.API", "..\external\Imgur.API\src\Imgur.API\Imgur.API.csproj", "{9381D7F6-D1B7-4C28-83F0-D7C816D26314}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Tray", "..\external\Drastic.Tools\src\Drastic.Tray\Drastic.Tray.csproj", "{02F5E5C3-BE6A-4552-ABAE-19717DC989D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow", "..\external\Drastic.Tools\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj", "{9FE021FB-7632-4B1F-884D-D0CAAD11DDC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow.Maui", "..\external\Drastic.Tools\src\Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj", "{A70E30AB-1B5E-4B73-9228-631751A6EDB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +58,18 @@ Global
 		{9381D7F6-D1B7-4C28-83F0-D7C816D26314}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9381D7F6-D1B7-4C28-83F0-D7C816D26314}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9381D7F6-D1B7-4C28-83F0-D7C816D26314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F5E5C3-BE6A-4552-ABAE-19717DC989D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F5E5C3-BE6A-4552-ABAE-19717DC989D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F5E5C3-BE6A-4552-ABAE-19717DC989D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F5E5C3-BE6A-4552-ABAE-19717DC989D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FE021FB-7632-4B1F-884D-D0CAAD11DDC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE021FB-7632-4B1F-884D-D0CAAD11DDC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE021FB-7632-4B1F-884D-D0CAAD11DDC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE021FB-7632-4B1F-884D-D0CAAD11DDC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A70E30AB-1B5E-4B73-9228-631751A6EDB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70E30AB-1B5E-4B73-9228-631751A6EDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70E30AB-1B5E-4B73-9228-631751A6EDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70E30AB-1B5E-4B73-9228-631751A6EDB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

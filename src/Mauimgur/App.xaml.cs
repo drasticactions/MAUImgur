@@ -2,8 +2,6 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
-using Mauimgur.Platforms.MacCatalyst;
-
 namespace Mauimgur;
 
 /// <summary>
@@ -27,7 +25,7 @@ public partial class App : Application
     protected override Window CreateWindow(IActivationState? activationState)
     {
 #if MACCATALYST
-        return new MacMockWindow(this.provider);
+        return new Mauimgur.Platforms.MacCatalyst.MacMockWindow(this.provider);
 #else
         return new MainWindow(new MainPage(this.provider), this.provider);
 #endif

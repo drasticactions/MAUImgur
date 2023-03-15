@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using Drastic.DragAndDrop;
 using Drastic.Tray;
 using Drastic.TrayWindow;
 using Microsoft.Maui.Controls;
@@ -24,20 +25,25 @@ namespace Mauimgur.Platforms.MacCatalyst
         protected override void OnHandlerChanged()
         {
             var platform = (UIKit.UIWindow)this.Handler.PlatformView!;
-            Drastic.TrayWindow.NSApplication.Hide(platform);
+            Drastic.TrayWindow.NSApplication.Close(platform);
             this.Icon = this.GenerateTrayIcon();
+            this.Icon.RightClicked += (object? sender, TrayClickedEventArgs e) => this.Icon.OpenMenu();
             base.OnHandlerChanged();
         }
+
+        private DragAndDrop? DragAndDrop { get; set; }
 
         private TrayIcon GenerateTrayIcon()
         {
             var menuItems = new List<TrayMenuItem>();
             menuItems.Add(new TrayMenuItem("Quit", null, async () => { Drastic.TrayWindow.NSApplication.Terminate(); }, "q"));
-            var trayIcon = new TrayIcon("MAUImgur", new TrayImage(UIKit.UIImage.GetSystemImage("circle")!), menuItems);
+            var trayIcon = new TrayIcon("MAUImgur", new TrayImage(UIKit.UIImage.GetSystemImage("photo.circle")!), menuItems);
             if (UIKit.UIApplication.SharedApplication.Delegate is MauiTrayUIApplicationDelegate trayDelegate)
             {
                 var page = new MainPage(this.provider);
                 var control = page.ToUIViewController(Microsoft.Maui.Controls.Application.Current!.Handler.MauiContext!);
+                this.DragAndDrop = new DragAndDrop(control);
+                this.DragAndDrop.Drop += this.DragAndDrop_Drop;
                 trayDelegate.CreateTrayWindow(trayIcon, new TrayWindowOptions(), control, false);
             }
             else
@@ -46,6 +52,10 @@ namespace Mauimgur.Platforms.MacCatalyst
             }
 
             return trayIcon;
+        }
+
+        private void DragAndDrop_Drop(object? sender, DragAndDropOverlayTappedEventArgs e)
+        {
         }
     }
 }

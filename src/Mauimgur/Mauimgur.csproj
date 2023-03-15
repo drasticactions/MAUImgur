@@ -78,6 +78,8 @@
 	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.Overlay\Drastic.Overlay.csproj" />
 	  <ProjectReference Include="..\..\external\Imgur.API\src\Imgur.API\Imgur.API.csproj" />
 	  <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
+	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.Tray\Drastic.Tray.csproj" />
+	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="DebugPage.xaml">
@@ -85,6 +87,6 @@
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">
-	  <PackageReference Include="Drastic.TrayWindow.Maui" Version="1.0.9" />
+	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj" />
 	</ItemGroup>
 </Project>

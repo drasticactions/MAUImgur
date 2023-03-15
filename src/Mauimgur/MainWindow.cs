@@ -36,7 +36,11 @@ namespace Mauimgur
 
         private async void MainWindow_Drop(object? sender, Drastic.DragAndDrop.DragAndDropOverlayTappedEventArgs e)
         {
-            Task.Run(async () => {
+            this.HandleDropEventsAsync(e).FireAndForgetSafeAsync();
+        }
+
+        private async Task HandleDropEventsAsync(Drastic.DragAndDrop.DragAndDropOverlayTappedEventArgs e)
+        {
 #if WINDOWS
                 var storageFiles = new List<Windows.Storage.StorageFile>();
                 foreach (var file in e.Paths) {
@@ -45,13 +49,12 @@ namespace Mauimgur
 
                 var results = storageFiles.Select(n => new Mauimgur.Platforms.Windows.WindowsMediaFile(n));
 #else
-                var results = e.Paths.Select(n => new Mauimgur.Models.MauiMediaFile(new FileResult(n)));
+            var results = e.Paths.Select(n => new Mauimgur.Models.MauiMediaFile(new FileResult(n)));
 #endif
 
-                var test = results.FirstOrDefault();
-                var fart = test!.OpenReadAsync();
-                this.imageUploadVM.UploadMedia(results).FireAndForgetSafeAsync();
-            }).FireAndForgetSafeAsync();
+            var test = results.FirstOrDefault();
+            var fart = test!.OpenReadAsync();
+            this.imageUploadVM.UploadMedia(results).FireAndForgetSafeAsync();
         }
 
         private void ImageUploadProgress_ProgressChanged(object? sender, Core.Models.ImageUploadUpdate e)
