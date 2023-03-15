@@ -5,6 +5,10 @@
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              xmlns:controls="clr-namespace:Mauimgur.Controls"
              x:Class="Mauimgur.MainPage">
+    <ContentPage.IconImageSource>
+        <FontImageSource Glyph=""
+                         FontFamily="FASolid" />
+    </ContentPage.IconImageSource>
     <Grid>
         <CollectionView Margin="5" ItemsSource="{Binding Images}">
             <CollectionView.ItemsLayout>
