@@ -31,7 +31,7 @@ namespace Mauimgur
             this.imageUploadVM = this.provider.GetService<ImageUploadViewModel>()!;
             this.resultPage = new ImageUploadResultPage(this.provider);
             this.imageUploadVM.ImageUploadProgress.ProgressChanged += this.ImageUploadProgress_ProgressChanged;
-            this.Drop += MainWindow_Drop;
+            this.Drop += this.MainWindow_Drop;
         }
 
         private async void MainWindow_Drop(object? sender, Drastic.DragAndDrop.DragAndDropOverlayTappedEventArgs e)

@@ -75,6 +75,9 @@ public static class MauiProgram
 
         builder
             .UseMauiApp<App>()
+#if MACCATALYST
+            .AddTrayWindowSupport()
+#endif
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

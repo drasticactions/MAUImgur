@@ -84,4 +84,7 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">
+	  <PackageReference Include="Drastic.TrayWindow.Maui" Version="1.0.9" />
+	</ItemGroup>
 </Project>
