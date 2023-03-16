@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow", "..\ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow.Maui", "..\external\Drastic.Tools\src\Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj", "{A70E30AB-1B5E-4B73-9228-631751A6EDB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mauimgur.Catalyst", "Mauimgur.Catalyst\Mauimgur.Catalyst.csproj", "{1FCDBE20-270E-4103-840C-37F6EEC8CABB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{A70E30AB-1B5E-4B73-9228-631751A6EDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A70E30AB-1B5E-4B73-9228-631751A6EDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A70E30AB-1B5E-4B73-9228-631751A6EDB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FCDBE20-270E-4103-840C-37F6EEC8CABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCDBE20-270E-4103-840C-37F6EEC8CABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FCDBE20-270E-4103-840C-37F6EEC8CABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FCDBE20-270E-4103-840C-37F6EEC8CABB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-maccatalyst</TargetFramework>
+    <RuntimeIdentifier>maccatalyst-x64</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <SupportedOSPlatformVersion>14.2</SupportedOSPlatformVersion>
+    <UseMaui>true</UseMaui>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.DragAndDrop\Drastic.DragAndDrop.csproj" />
+    <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.Tray\Drastic.Tray.csproj" />
+    <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj" />
+    <ProjectReference Include="..\..\external\Imgur.API\src\Imgur.API\Imgur.API.csproj" />
+    <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
+    <ProjectReference Include="..\Mauimgur\Mauimgur.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\fa-regular-400.ttf">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\fa-solid-900.ttf">
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

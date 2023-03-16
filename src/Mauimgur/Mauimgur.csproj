@@ -44,8 +44,8 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="32,32" />
+		<MauiImage Update="Resources\Images\pictures.svg" BaseSize="32,32" />
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
@@ -69,6 +69,7 @@
 	  <None Remove="Controls\" />
 	  <None Remove="Resources\Fonts\fa-regular-400.ttf" />
 	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
+	  <None Remove="Resources\Images\pictures.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Utilities\" />

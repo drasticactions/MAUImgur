@@ -3,7 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mauimgur.SettingsPage">
     <ContentPage.IconImageSource>
-        <FontImageSource Glyph=""
-                         FontFamily="FASolid" />
+        <FileImageSource File="dotnet_bot.png"/>
     </ContentPage.IconImageSource>
+    <TableView>
+        <TableRoot>
+            <TableSection Title="About">
+                <TextCell Text="Test"/>
+            </TableSection>
+        </TableRoot>
+    </TableView>
 </ContentPage>
