@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -61,10 +60,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="WinUIEx" Version="2.1.0" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Remove="Utilities\" />
 	  <None Remove="Controls\" />
 	  <None Remove="Resources\Fonts\fa-regular-400.ttf" />
@@ -73,7 +68,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Utilities\" />
-	  <Folder Include="Controls\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.DragAndDrop.Maui\Drastic.DragAndDrop.Maui.csproj" />
@@ -83,13 +77,5 @@
 	  <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
 	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.Tray\Drastic.Tray.csproj" />
 	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <MauiXaml Update="DebugPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">
-	  <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj" />
 	</ItemGroup>
 </Project>

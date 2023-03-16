@@ -5,7 +5,6 @@
 using Drastic.Services;
 using Mauimgur.Core.Services;
 using Mauimgur.Core.ViewModels;
-using Mauimgur.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.Maui.Storage;
@@ -24,24 +23,12 @@ public static class MauiProgram
     /// <returns><see cref="MauiApp"/>.</returns>
     public static MauiApp CreateMauiApp()
     {
-        Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("CatalystButton", (handler, view) =>
-        {
-#if MACCATALYST
-#pragma warning disable CA1416 // プラットフォームの互換性を検証
-            handler.PlatformView.PreferredBehavioralStyle = UIKit.UIBehavioralStyle.Pad;
-#pragma warning restore CA1416 // プラットフォームの互換性を検証
-#endif
-        });
 
         var path = "database.db";
-
-#if MACCATALYST || IOS
+#if IOS
         path = System.IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.LocalApplicationData), "MAUImgur", "database.db");
         System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path)!);
-#elif ANDROID
-        path = System.IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.LocalApplicationData), "MAUImgur", "database.db");
-        System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path)!);
-#elif WINDOWS
+#else
         path = System.IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.LocalApplicationData), "MAUImgur", "database.db");
         System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path)!);
 #endif
@@ -49,35 +36,15 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder.Services!
        .AddSingleton<IErrorHandlerService, ErrorHandlerService>()
-       .AddSingleton<IAppDispatcher, AppDispatcherService>()
+       .AddSingleton<IAppDispatcher>(new AppDispatcherService(Microsoft.Maui.Controls.Application.Current!.Dispatcher))
        .AddSingleton<IPlatformServices, MauiPlatformServices>()
        .AddSingleton<ImgurService>(new ImgurService(Core.Utilities.Tokens.GetImgurClientId(), Core.Utilities.Tokens.GetImgurClientSecret()))
        .AddSingleton<DatabaseService>(new DatabaseService(path))
        .AddSingleton<ImageUploadViewModel>()
-       .AddSingleton<MainAlbumViewModel>()
-       ;
-
-#if WINDOWS
-        builder.ConfigureLifecycleEvents(events =>
-        {
-            events.AddWindows(wndLifeCycleBuilder =>
-            {
-                wndLifeCycleBuilder.OnWindowCreated(window =>
-                {
-                    var manager = WinUIEx.WindowManager.Get(window);
-                    manager.MinWidth = 640;
-                    manager.MinHeight = 480;
-                    manager.Backdrop = new WinUIEx.MicaSystemBackdrop();
-                });
-            });
-        });
-#endif
+       .AddSingleton<MainAlbumViewModel>();
 
         builder
             .UseMauiApp<App>()
-#if MACCATALYST
-            .AddTrayWindowSupport()
-#endif
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

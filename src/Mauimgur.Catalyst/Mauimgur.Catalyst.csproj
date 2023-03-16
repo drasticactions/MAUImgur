@@ -20,7 +20,6 @@
     <ProjectReference Include="..\..\external\Drastic.Tools\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj" />
     <ProjectReference Include="..\..\external\Imgur.API\src\Imgur.API\Imgur.API.csproj" />
     <ProjectReference Include="..\Mauimgur.Core\Mauimgur.Core.csproj" />
-    <ProjectReference Include="..\Mauimgur\Mauimgur.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-regular-400.ttf">

@@ -65,7 +65,7 @@ namespace Mauimgur.Core.Utilities {
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Unable to create NSUrl from Original string, trying Absolute URI: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Unable to create NSUrl from Original string, trying Absolute URI: {ex.Message}");
                 return new Foundation.NSUrl(uri.AbsoluteUri);
             }
         }

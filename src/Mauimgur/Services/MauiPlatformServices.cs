@@ -6,9 +6,8 @@ using Drastic.Tools;
 using Mauimgur.Core.Events;
 using Mauimgur.Core.Models;
 using Mauimgur.Core.Services;
-using Mauimgur.Models;
 
-namespace Mauimgur.Services
+namespace Mauimgur.Core.Services
 {
     /// <summary>
     /// MAUI Platform Services.

@@ -1,8 +1,9 @@
+// <copyright file="Main.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
 using Mauimgur.Catalyst;
 using UIKit;
-
-[assembly: ExportFont("fa-regular-400.ttf", Alias = "FARegular")]
-[assembly: ExportFont("fa-solid-900.ttf", Alias = "FASolid")]
 
 // This is the main entry point of the application.
 // If you want to use a different Application Delegate class from "AppDelegate"

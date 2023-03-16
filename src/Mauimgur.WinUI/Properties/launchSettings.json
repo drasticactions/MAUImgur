@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Mauimgur.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Mauimgur.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

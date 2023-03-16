@@ -15,7 +15,7 @@ namespace Mauimgur.Core.Models
         /// <param name="uploadsCompleted">Number of Feeds Completed.</param>
         /// <param name="totalImages">Total Feeds.</param>
         /// <param name="lastUpdated">Last Feed Updated.</param>
-        public ImageUploadUpdate(int uploadsCompleted, int totalImages, IImage? lastUpdated = default)
+        public ImageUploadUpdate(int uploadsCompleted, int totalImages, Imgur.API.Models.IImage? lastUpdated = default)
         {
             this.LastUpdated = lastUpdated;
             this.TotalImages = totalImages;
@@ -25,7 +25,7 @@ namespace Mauimgur.Core.Models
         /// <summary>
         /// Gets the last image update.
         /// </summary>
-        public IImage? LastUpdated { get; }
+        public Imgur.API.Models.IImage? LastUpdated { get; }
 
         /// <summary>
         /// Gets the total number of images.

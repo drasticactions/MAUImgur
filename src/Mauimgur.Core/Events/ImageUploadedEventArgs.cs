@@ -16,7 +16,7 @@ namespace Mauimgur.Core.Events
         /// Initializes a new instance of the <see cref="ImageUploadedEventArgs"/> class.
         /// </summary>
         /// <param name="image">Uploaded Image.</param>
-        public ImageUploadedEventArgs(Image image)
+        public ImageUploadedEventArgs(Imgur.API.Models.Image image)
         {
             this.Image = image;
         }
@@ -24,6 +24,6 @@ namespace Mauimgur.Core.Events
         /// <summary>
         /// Gets the image that was uploaded.
         /// </summary>
-        public Image Image { get; }
+        public Imgur.API.Models.Image Image { get; }
     }
 }
