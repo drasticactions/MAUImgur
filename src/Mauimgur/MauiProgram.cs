@@ -36,7 +36,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder.Services!
        .AddSingleton<IErrorHandlerService, ErrorHandlerService>()
-       .AddSingleton<IAppDispatcher>(new AppDispatcherService(Microsoft.Maui.Controls.Application.Current!.Dispatcher))
+       .AddSingleton<IAppDispatcher, AppDispatcherService>()
        .AddSingleton<IPlatformServices, MauiPlatformServices>()
        .AddSingleton<ImgurService>(new ImgurService(Core.Utilities.Tokens.GetImgurClientId(), Core.Utilities.Tokens.GetImgurClientSecret()))
        .AddSingleton<DatabaseService>(new DatabaseService(path))

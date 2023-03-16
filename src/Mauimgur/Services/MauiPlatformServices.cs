@@ -40,9 +40,6 @@ namespace Mauimgur.Core.Services
         /// <inheritdoc/>
         public async Task StartAuthenticationAsync()
         {
-#if WINDOWS
-            await Windows.System.Launcher.LaunchUriAsync(new Uri(this.imgur.AuthUrl));
-#else
             try
             {
                 Microsoft.Maui.Authentication.WebAuthenticatorResult authResult = await WebAuthenticator.Default.AuthenticateAsync(
@@ -60,7 +57,6 @@ namespace Mauimgur.Core.Services
             {
                 // Use stopped auth
             }
-#endif
         }
     }
 }

@@ -12,16 +12,10 @@ namespace Mauimgur.Core.Services
     /// </summary>
     public class AppDispatcherService : IAppDispatcher
     {
-        private IDispatcher dispatcher;
-
-        public AppDispatcherService(IDispatcher dispatcher)
-        { 
-            this.dispatcher = dispatcher;
-        }
         /// <inheritdoc/>
         public bool Dispatch(Action action)
         {
-            return dispatcher.Dispatch(action);
+            return Microsoft.Maui.Controls.Application.Current!.Dispatcher.Dispatch(action);
         }
     }
 }
