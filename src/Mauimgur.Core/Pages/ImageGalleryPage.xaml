@@ -4,8 +4,9 @@
              xmlns:translations="clr-namespace:Mauimgur.Core.Translations"
              x:Class="Mauimgur.Core.Pages.ImageGalleryPage"
              Title="ImageGalleryPage">
-    <Grid RowSpacing="5" RowDefinitions="*, Auto">
-        <CollectionView Margin="5" x:Name="ImageGallery" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged" ItemsSource="{Binding Images}">
+    <Grid RowSpacing="5" RowDefinitions="Auto, *, Auto">
+        <Button Command="{Binding AuthenticationCommand}" Grid.Row="0" HorizontalOptions="Center" Margin="5" Text="Login" />
+        <CollectionView Grid.Row="1" Margin="5" x:Name="ImageGallery" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged" ItemsSource="{Binding Images}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout HorizontalItemSpacing="5" VerticalItemSpacing="5" Orientation="Vertical" Span="2" />
             </CollectionView.ItemsLayout>
@@ -27,6 +28,6 @@
                 </ContentView>
             </CollectionView.EmptyView>
         </CollectionView>
-        <Button Command="{Binding SelectAndUploadMediaCommand}" Grid.Row="1" HorizontalOptions="Center" Margin="5" Text="Add" />
+        <Button Command="{Binding SelectAndUploadMediaCommand}" Grid.Row="2" HorizontalOptions="Center" Margin="5" Text="Add" />
     </Grid>
 </ContentPage>
